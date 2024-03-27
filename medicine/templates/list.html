@@ -1,0 +1,30 @@
+{% extends 'layout/app-layout.html' %}
+{% block 'content' %}
+<div class="center">
+    <ul>
+        {% for product in page_obj %}
+            <li>{{ product.name|upper }}</li>
+        {% endfor %}
+    </ul>
+</div>
+<nav aria-label="Page navigation example" style="margin:auto;">
+        {% if page_obj.has_previous %}
+            
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}" aria-label="previous">&laquo; previous</a>
+        {% endif %}
+
+        {% for page_number in page_obj.paginator.get_elided_page_range %}
+            {% if page_obj.number == page_number %}
+                    <span>{{ page_number }}</span>
+            {% else %}
+                    <a href="?page={{ page_number }}">{{ page_number }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next &raquo;</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+</nav>
+{% endblock %}

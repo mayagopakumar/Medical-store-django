@@ -1,0 +1,23 @@
+{%extends 'layout/app-layout.html'%}
+{%block 'content'%}
+
+<div style="padding-left: 10vw;">
+    <h3>Search Medicines</h3>
+    <form method="get">
+        <input type="text" name="q" value="{{query}}" placeholder= "Search by name">
+        <button type="submit">Search</button>
+    </form>
+        {% if medicine %}
+            <h5>Search results:</h5>
+            <ul>
+                {%for x in medicine %}
+                    <li>{{x.name}}</li>
+                {%endfor%}
+            </ul>
+        {%else %}
+            <p>No medicine found</p>
+        {%endif %}
+</div>
+
+
+{% endblock %}

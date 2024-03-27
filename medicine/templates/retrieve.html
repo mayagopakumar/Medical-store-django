@@ -1,0 +1,26 @@
+{%extends 'layout/app-layout.html'%}
+{%block 'content'%}
+
+<div style="padding-left: 5vw;">
+    <h1>View Medicines</h1>
+    <table border="1">
+        <tr>
+            <th>Medicine_id</th>
+            <th>Medicine_name</th>
+            <th>Medicine_quantity_required</th>
+            <th colspan="2">Actions</th>
+        </tr>
+            
+        {%for medicines in medicine_list%}
+        <tr>
+            <td>{{medicines.id}}</td>
+            <td>{{ medicines.name }} </td> 
+            <td>{{ medicines.required_quantity }}</td>
+            <td ><a href="{%url 'editmedicine' medicines.id %}" class="btn btn-success" value="edit" type="submit">Edit</a></td>
+            <td><a href="{%url 'deletemedicine' medicines.id %}" class="btn btn-success" value="edit" type="submit">Delete</a></td></tr>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{%endblock%}
